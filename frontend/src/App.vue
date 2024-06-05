@@ -19,10 +19,12 @@
               <div v-for="(prato, i) in pratosGuloso" :key="i">
                 <v-row>
                   <v-col cols="5">
+                    <span>Custo prato {{i + 1}}</span>
                     <v-text-field :rules="rules" class="mb-2" type="number" v-model="prato.custo"
                                   :placeholder="`Custo Prato ${i + 1}`"></v-text-field>
                   </v-col>
                   <v-col cols="5">
+                    <span>Lucro prato {{i + 1}}</span>
                     <v-text-field :rules="rules" class="mb-2" type="number" v-model="prato.lucro"
                                   :placeholder="`Lucro Prato ${i + 1}`"></v-text-field>
                   </v-col>
