@@ -5,7 +5,9 @@
         <v-container>
           <h2>Algoritmo Guloso</h2>
           <v-form>
+            <span>Dias:</span>
             <v-text-field :rules="rules" v-model="diasGuloso" class="mb-2" type="number" placeholder="Nº dias"></v-text-field>
+            <span>Orçamento inteiro:</span>
             <v-text-field :rules="rules" v-model="orcamentoGuloso" class="mb-2" type="number" placeholder="Orçamento"></v-text-field>
             <div>
               <div class="mb-5">
