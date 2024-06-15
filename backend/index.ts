@@ -19,7 +19,7 @@ const algoritmoGuloso: AlgoritmoGuloso = new AlgoritmoGuloso();
 const algoritmoDinamico: AlgoritmoDinamico = new AlgoritmoDinamico();
 
 app.post('/algoritmo-guloso', (req: any, res: any) => {
-  const body: Cardapio = req.body.body;
+  const body: Cardapio = req.body;
 
   const verifyBody: string | null = algoritmoGuloso.verificarBody(body);
   if (verifyBody) return res.status(400).send(verifyBody);
@@ -28,7 +28,7 @@ app.post('/algoritmo-guloso', (req: any, res: any) => {
 });
 
 app.post('/algoritmo-dinamico', (req: any, res: any) => {
-  const body: Cardapio = req.body.body;
+  const body: Cardapio = req.body;
 
   const verifyBody: string | null = algoritmoGuloso.verificarBody(body);
   if (verifyBody) return res.status(400).send(verifyBody);
