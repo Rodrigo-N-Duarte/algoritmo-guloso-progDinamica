@@ -1,5 +1,5 @@
-import Cardapio from "./types/Cardapio";
 import {Prato} from "./types/Prato";
+import Cardapio from "./types/Cardapio";
 
 export default class AlgoritmoGuloso {
     calcularCardapio(cardapio: Cardapio) {

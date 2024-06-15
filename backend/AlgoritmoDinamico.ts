@@ -53,17 +53,4 @@ export default class AlgoritmoDinamico {
     }
     return melhorPrato;
   }
-
-  verificarBody(cardapio: Cardapio): string | null {
-    if (!cardapio.dias || cardapio.dias < 1 || cardapio.dias > 21) {
-      return "Quantidade de dias inválida";
-    }
-    if (!cardapio.pratos || cardapio.pratos.length < 1 || cardapio.pratos.length > 50) {
-      return "Quantidade de pratos inválida";
-    }
-    if (cardapio.orcamento < 0 || cardapio.orcamento > 100) {
-      return "Orçamento inválido";
-    }
-    return null;
-  }
 }
