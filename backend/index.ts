@@ -6,7 +6,7 @@ import AlgoritmoDinamico from "./AlgoritmoDinamico";
 import Cardapio from "./types/Cardapio";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -19,7 +19,7 @@ const algoritmoGuloso: AlgoritmoGuloso = new AlgoritmoGuloso();
 const algoritmoDinamico: AlgoritmoDinamico = new AlgoritmoDinamico();
 
 app.post('/algoritmo-guloso', (req: any, res: any) => {
-  const body: Cardapio = req.body;
+  const body: Cardapio = req.body.body ? req.body.body : req.body;
 
   const verifyBody: string | null = algoritmoGuloso.verificarBody(body);
   if (verifyBody) return res.status(400).send(verifyBody);
@@ -28,7 +28,7 @@ app.post('/algoritmo-guloso', (req: any, res: any) => {
 });
 
 app.post('/algoritmo-dinamico', (req: any, res: any) => {
-  const body: Cardapio = req.body;
+  const body: Cardapio = req.body.body ? req.body.body : req.body;
 
   const verifyBody: string | null = algoritmoGuloso.verificarBody(body);
   if (verifyBody) return res.status(400).send(verifyBody);

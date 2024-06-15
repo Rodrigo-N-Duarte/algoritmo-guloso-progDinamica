@@ -9,7 +9,7 @@ export default class AlgoritmoDinamico {
 
     for (let i = 1; i <= dias; i++) {
       for (let j = 1; j <= orcamento; j++) {
-        let melhorPratoPossivel = this.descobrirMelhorPratoPossivel(pratos, j, null, null);
+        let melhorPratoPossivel = this.descobrirMelhorPratoPossivel(pratos, j);
         if (melhorPratoPossivel) {
           let lucro = melhorPratoPossivel.lucro;
           let custo = melhorPratoPossivel.custo;
@@ -36,15 +36,13 @@ export default class AlgoritmoDinamico {
     };
   }
 
-  descobrirMelhorPratoPossivel(pratos: Prato[], orcamento: number, pratoAnterior: Prato | null, pratoDoisAnterior: Prato | null) {
+  descobrirMelhorPratoPossivel(pratos: Prato[], orcamento: number) {
     let melhorPrato = null;
     let melhorDiferenca: number = -Infinity;
 
     for (const prato of pratos) {
       if (prato.custo <= orcamento) {
         let diferenca: number = (prato.lucro - prato.custo);
-        if (prato == pratoAnterior) diferenca = (prato.lucro * 0.5) - prato.custo
-        if (prato == pratoDoisAnterior) diferenca = 0
         if (diferenca > melhorDiferenca) {
           melhorDiferenca = diferenca;
           melhorPrato = prato;
