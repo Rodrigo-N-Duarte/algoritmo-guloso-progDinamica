@@ -1,12 +1,24 @@
 import Cardapio from "./types/Cardapio";
 import { Prato } from "./types/Prato";
 
+/**
+ * Classe AlgoritmoDinamico responsável por calcular o melhor cardápio.
+ */
 export default class AlgoritmoDinamico {
+  /**
+   * Calcular o melhor cardápio com base no cardápio fornecido.
+   * 
+   * @param {Cardapio} cardapio - O objeto cardápio contendo dias, orçamento e pratos.
+   * @returns {Object} Um objeto com o lucro máximo e a sequência de pratos.
+   */
   calcularCardapio(cardapio: Cardapio) {
     let { dias, orcamento, pratos } = cardapio;
     let tabela: number[][] = new Array(dias + 1).fill(0).map(() => new Array(orcamento + 1).fill(0));
     let sequenciaIndexPratos: number[] = [];
 
+    /**
+     * Iterar por cada dia e cada possível orçamento.
+     */
     for (let i = 1; i <= dias; i++) {
       for (let j = 1; j <= orcamento; j++) {
         let melhorPratoPossivel = this.descobrirMelhorPratoPossivel(pratos, j, null, null);
@@ -21,7 +33,7 @@ export default class AlgoritmoDinamico {
             } else {
               tabela[i][j] = tabela[i - 1][j];
             }
-          } else {
+          } else { 
             tabela[i][j] = tabela[i - 1][j];
           }
         } else {
@@ -36,10 +48,22 @@ export default class AlgoritmoDinamico {
     };
   }
 
+  /**
+   * Encontrar o melhor prato possível com base no orçamento e nos pratos anteriores.
+   * 
+   * @param {Prato[]} pratos - O array de pratos.
+   * @param {number} orcamento - O orçamento atual.
+   * @param {Prato | null} pratoAnterior - O prato anterior.
+   * @param {Prato | null} pratoDoisAnterior - O prato antes do prato anterior.
+   * @returns {Prato | null} O melhor prato possível ou null se nenhum prato for encontrado.
+   */
   descobrirMelhorPratoPossivel(pratos: Prato[], orcamento: number, pratoAnterior: Prato | null, pratoDoisAnterior: Prato | null) {
     let melhorPrato = null;
     let melhorDiferenca: number = -Infinity;
 
+    /**
+     * Iterar por cada prato e calcular a diferença entre lucro e custo.
+     */
     for (const prato of pratos) {
       if (prato.custo <= orcamento) {
         let diferenca: number = (prato.lucro - prato.custo);
@@ -53,6 +77,13 @@ export default class AlgoritmoDinamico {
     }
     return melhorPrato;
   }
+
+  /**
+   * Verificar se o cardápio é válido.
+   * 
+   * @param {Cardapio} cardapio - O objeto cardápio a ser verificado.
+   * @returns {string | null} Uma mensagem de erro se o cardápio for inválido, ou null se for válido.
+   */
 
   verificarBody(cardapio: Cardapio): string | null {
     if (!cardapio.dias || cardapio.dias < 1 || cardapio.dias > 21) {
