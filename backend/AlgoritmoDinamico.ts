@@ -15,7 +15,6 @@ export default class AlgoritmoDinamico {
     let { dias, orcamento, pratos } = cardapio;
     let tabela: number[][] = new Array(dias + 1).fill(0).map(() => new Array(orcamento + 1).fill(0));
     let escolhas: number[][] = new Array(dias + 1).fill(0).map(() => new Array(orcamento + 1).fill(-1));
-    let repeticoes: number[][][] = new Array(dias + 1).fill(0).map(() => new Array(orcamento + 1).fill(0).map(() => new Array(pratos.length).fill(0)));
 
     /**
      * Iterar por cada dia e cada possível orçamento.
@@ -53,7 +52,6 @@ export default class AlgoritmoDinamico {
         if (melhorPratoIndex !== -1) {
           tabela[i][j] = melhorLucro;
           escolhas[i][j] = melhorPratoIndex;
-          repeticoes[i][j][melhorPratoIndex] = (i > 1 && escolhas[i - 1][j - pratos[melhorPratoIndex].custo] === melhorPratoIndex) ? repeticoes[i - 1][j - pratos[melhorPratoIndex].custo][melhorPratoIndex] + 1 : 1;
         } else {
           tabela[i][j] = tabela[i - 1][j];
         }
