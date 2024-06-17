@@ -50,7 +50,7 @@ export default class AlgoritmoGuloso {
             if (prato.custo <= orcamento) {
                 let diferenca: number = (prato.lucro - prato.custo);
                 if (prato == pratoAnterior) diferenca = (prato.lucro * 0.5) - prato.custo
-                if (prato == pratoDoisAnterior) diferenca = 0
+                if (prato == pratoAnterior && prato == pratoDoisAnterior) diferenca = 0
                 if (diferenca > melhorDiferenca) {
                     melhorDiferenca = diferenca;
                     melhorPrato = prato;
